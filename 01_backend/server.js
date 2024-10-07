@@ -2,7 +2,7 @@ const express = require('express')
 require('dotenv').config()
 
 const app = express();
-const port = 4000;
+const port = process.env.PORT;
 const githubData = {
     "login": "Prashant29062003",
     "id": 112088696,
@@ -54,6 +54,6 @@ app.get("/meraNaam", (req,res) => {
     res.send("<h1>Mera naam Prashant Kumar.</h1>")
 })
 
-app.listen(process.env.PORT, () => {
+app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 })
