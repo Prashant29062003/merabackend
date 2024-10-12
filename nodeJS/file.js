@@ -46,3 +46,6 @@ const fs = require("fs");
 // fs.mkdirSync("docs/a/b", {recursive: true}); //{recursive: true} ie. infinitely allows to make directry
 // fs.mkdirSync("docs/a.txt", {recursive: true});
 
+
+
+
