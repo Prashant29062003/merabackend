@@ -1,11 +1,11 @@
 ## Summary of Common fs Methods:
-1. Reading Files: `fs.readFile(),` `fs.readFileSync()`
-1. Writing Files: `fs.writeFile(),` `fs.writeFileSync()`
-1. Appending Files: `fs.appendFile(),` `fs.appendFileSync()`
-1. Deleting Files: `fs.unlink(),` `fs.unlinkSync()`
-1. Creating Directories: `fs.mkdir(),` `fs.mkdirSync()`
-1. Deleting Directories: `fs.rmdir(),` `fs.rmdirSync()`
-1. Getting Stats: `fs.stat(),` `fs.statSync()`
+1. Reading Files: `fs.readFile()`, `fs.readFileSync()`
+1. Writing Files: `fs.writeFile()`, `fs.writeFileSync()`
+1. Appending Files: `fs.appendFile()`, `fs.appendFileSync()`
+1. Deleting Files: `fs.unlink()`, `fs.unlinkSync()`
+1. Creating Directories: `fs.mkdir()`, `fs.mkdirSync()`
+1. Deleting Directories: `fs.rmdir()`, `fs.rmdirSync()`
+1. Getting Stats: `fs.stat()`, `fs.statSync()`
 1. Watching Files: `fs.watch()`
 
 
@@ -30,7 +30,7 @@ const fs = require("fs");
 // }
 
 // read file - Async method
-fs.readFile("intro.md","utf8", (err,data)=>{
+fs.readFile("intro.md","utf8", (err,data)=>{    //Async not gives any data in return (it's return type is void)
     if(err){
         console.log(err);
         return
@@ -40,7 +40,7 @@ fs.readFile("intro.md","utf8", (err,data)=>{
 
 // read file(fs.readFileSync) - Sync method
 try {
-    const data = fs.readFileSync("intro.txt","utf8");
+    const data = fs.readFileSync("intro.txt","utf8");   // Sync always gives some return value
     console.log(data);
 } catch (error) {
     console.log(error);
