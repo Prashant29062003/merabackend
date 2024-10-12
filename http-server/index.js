@@ -13,21 +13,30 @@
 // logging-data 
 const http = require("http");
 const fs = require("fs");
+const url = require("url")
 
 const PORT = 8000;
 const myServer = http.createServer((req, res)=>{
-    
+    if(req.url === '/favicon.ico') return res.end();
     const log = `${Date.now()}: ${req.url} New Request Received.\n`;
+    const myURl = url.parse(req.url, true);
+    console.log(myURl);
     fs.appendFile("log.txt",log, (err, data)=>{
         if(err){
             console.log(err);
         }
         // Multi routing
-        switch(req.url){
+        switch(myURl.pathname){
             case "/": res.end("WELCOME Again, NAMASTE!");
             break;
-            case "/about": res.end("ABOUT ME");
-            break;
+            case "/about":
+                const {myname, age} = myURl.query;
+                res.end(`HI ${myname}. your age is ${age}.`);
+                break;
+
+            case "/youtube":
+                res.end(`your search result for ${myURl.query.search_query} are`)
+                break
             default : res.end("404 Not Found!")
         }
     });
