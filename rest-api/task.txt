@@ -1,0 +1,19 @@
+REST API - JSON
+
+GET /users - list of all users data in HTML format
+
+<--- it's just a part of best practices - like user is from app-dev then he/she can esily fetch data as JSON--->
+GET /api/users - list of all users JSON - DATA --> For any other platform 
+GET /users/1 - Get the user with ID 1
+GET /users/2 - Get the user with ID 2
+
+Dynamic Path Parameters
+GET /api/users/:(anything)
+eg.- GET /api/users/:id
+
+
+POST /users - Create new user
+
+PATCH /users/1 -Edit the user with ID 1
+
+DELETE /users/2 - Delete the user with ID 2
