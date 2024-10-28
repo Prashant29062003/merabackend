@@ -1,4 +1,4 @@
-REST API - JSON
+REST API - JSON (`Representational State Transfer` Service Programming Interface )
 
 GET /users - list of all users data in HTML format
 
