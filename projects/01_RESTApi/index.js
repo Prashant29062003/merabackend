@@ -8,7 +8,15 @@ const app = express();
 const PORT = 8000;
 
 // middleware
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({extended: false}));
+
+app.use((req,res,next)=>{
+    fs.appendFile("./log.txt", `\n${Date.now()}: ${req.ip} ${req.method}: ${req.path}`, (err, data)=>{
+        next();
+    })
+})
+
+
 
 app.get("/", (req,res)=> {
     res.send("Welcome to my wolrd!")
@@ -60,16 +68,34 @@ app.route("/api/users/:id")
     .get((req,res)=>{
         const id = Number(req.params.id);
         const user = users.find((user) => user.id === id);
+        if(!user){
+            return res.status(404).json({error: "user not found!"});
+        }
         return res.send(user)
     })
     .patch((req,res)=>{
         // edit user with id
+        const id = Number(req.params.id);
+        const userIndex = users.findIndex((user)=> user.id === id);
 
-        return res.json({status: "pending"})
+        if(userIndex === -1){
+            return res.status(404).json("User not found!");
+        }
+
+        // update only the provided fields
+        users[userIndex] = { ...users[userIndex], ...req.body };
+
+        // Save changes to MOCK_DATA.json
+        fs.writeFile("./MOCK_DATA.json", JSON.stringify(users, null, 2), (err)=>{
+            if(err){
+                return res.status(500).json({error : "Failed to update user"})
+            }
+            return res.json({message: "User upadated successfully.", user: users[userIndex]})
+        })
     })
     .delete((req,res)=>{
         // delete user with id
-        
+
         return res.json({status: "pending"})
 
     })
